@@ -46,6 +46,8 @@ Phase 2: ???
 ```
 Give an example
 ```
+## Draft
+https://docs.google.com/document/d/1Zt69fnE_cxiK-CwzPXUD1LzyCgx1SmhgvhaYAhrmaKU/edit?usp=sharing
 
 ## TODO:
 
