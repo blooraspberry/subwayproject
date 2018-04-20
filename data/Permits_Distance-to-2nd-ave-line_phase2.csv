@@ -1,69 +1,69 @@
 "Filing.Year","Distance","Total","index"
 2001,"1 block radius from station entrance (right side)",189,100
 2001,"2 block radius from station entrance (right side)",113,100
-2001,"other, 1 block right from line",361,100
+2001,"other, 1 block right from line",363,100
 2001,"other, 2 blocks right from line",364,100
 2002,"1 block radius from station entrance (right side)",176,93.1216931216931
 2002,"2 block radius from station entrance (right side)",143,126.548672566372
-2002,"other, 1 block right from line",363,100.554016620499
-2002,"other, 2 blocks right from line",302,82.967032967033
+2002,"other, 1 block right from line",366,100.826446280992
+2002,"other, 2 blocks right from line",311,85.4395604395604
 2003,"1 block radius from station entrance (right side)",195,103.174603174603
 2003,"2 block radius from station entrance (right side)",161,142.477876106195
-2003,"other, 1 block right from line",336,93.0747922437673
-2003,"other, 2 blocks right from line",313,85.989010989011
+2003,"other, 1 block right from line",363,100
+2003,"other, 2 blocks right from line",316,86.8131868131868
 2004,"1 block radius from station entrance (right side)",279,147.619047619048
 2004,"2 block radius from station entrance (right side)",318,281.41592920354
-2004,"other, 1 block right from line",283,78.393351800554
-2004,"other, 2 blocks right from line",276,75.8241758241758
+2004,"other, 1 block right from line",297,81.8181818181818
+2004,"other, 2 blocks right from line",281,77.1978021978022
 2005,"1 block radius from station entrance (right side)",260,137.566137566138
 2005,"2 block radius from station entrance (right side)",281,248.672566371681
-2005,"other, 1 block right from line",375,103.87811634349
-2005,"other, 2 blocks right from line",320,87.9120879120879
+2005,"other, 1 block right from line",390,107.438016528926
+2005,"other, 2 blocks right from line",322,88.4615384615385
 2006,"1 block radius from station entrance (right side)",298,157.671957671958
 2006,"2 block radius from station entrance (right side)",300,265.486725663717
-2006,"other, 1 block right from line",367,101.662049861496
-2006,"other, 2 blocks right from line",330,90.6593406593407
+2006,"other, 1 block right from line",391,107.71349862259
+2006,"other, 2 blocks right from line",340,93.4065934065934
 2007,"1 block radius from station entrance (right side)",333,176.190476190476
 2007,"2 block radius from station entrance (right side)",217,192.035398230089
-2007,"other, 1 block right from line",389,107.756232686981
-2007,"other, 2 blocks right from line",407,111.813186813187
+2007,"other, 1 block right from line",423,116.528925619835
+2007,"other, 2 blocks right from line",415,114.010989010989
 2008,"1 block radius from station entrance (right side)",299,158.201058201058
 2008,"2 block radius from station entrance (right side)",177,156.637168141593
-2008,"other, 1 block right from line",491,136.01108033241
-2008,"other, 2 blocks right from line",375,103.021978021978
+2008,"other, 1 block right from line",525,144.628099173554
+2008,"other, 2 blocks right from line",382,104.945054945055
 2009,"1 block radius from station entrance (right side)",296,156.613756613757
 2009,"2 block radius from station entrance (right side)",181,160.176991150442
-2009,"other, 1 block right from line",355,98.3379501385042
-2009,"other, 2 blocks right from line",284,78.021978021978
+2009,"other, 1 block right from line",366,100.826446280992
+2009,"other, 2 blocks right from line",287,78.8461538461538
 2010,"1 block radius from station entrance (right side)",307,162.433862433862
 2010,"2 block radius from station entrance (right side)",145,128.318584070796
-2010,"other, 1 block right from line",350,96.9529085872576
-2010,"other, 2 blocks right from line",350,96.1538461538462
+2010,"other, 1 block right from line",352,96.969696969697
+2010,"other, 2 blocks right from line",356,97.8021978021978
 2011,"1 block radius from station entrance (right side)",370,195.767195767196
 2011,"2 block radius from station entrance (right side)",211,186.725663716814
-2011,"other, 1 block right from line",378,104.709141274238
-2011,"other, 2 blocks right from line",449,123.351648351648
+2011,"other, 1 block right from line",380,104.683195592286
+2011,"other, 2 blocks right from line",461,126.648351648352
 2012,"1 block radius from station entrance (right side)",348,184.126984126984
 2012,"2 block radius from station entrance (right side)",271,239.823008849558
-2012,"other, 1 block right from line",480,132.963988919668
-2012,"other, 2 blocks right from line",458,125.824175824176
+2012,"other, 1 block right from line",488,134.435261707989
+2012,"other, 2 blocks right from line",465,127.747252747253
 2013,"1 block radius from station entrance (right side)",413,218.518518518519
 2013,"2 block radius from station entrance (right side)",244,215.929203539823
-2013,"other, 1 block right from line",504,139.612188365651
-2013,"other, 2 blocks right from line",511,140.384615384615
+2013,"other, 1 block right from line",511,140.771349862259
+2013,"other, 2 blocks right from line",530,145.604395604396
 2014,"1 block radius from station entrance (right side)",304,160.846560846561
 2014,"2 block radius from station entrance (right side)",192,169.911504424779
-2014,"other, 1 block right from line",514,142.382271468144
-2014,"other, 2 blocks right from line",340,93.4065934065934
+2014,"other, 1 block right from line",521,143.526170798898
+2014,"other, 2 blocks right from line",353,96.978021978022
 2015,"1 block radius from station entrance (right side)",354,187.301587301587
 2015,"2 block radius from station entrance (right side)",194,171.681415929204
-2015,"other, 1 block right from line",591,163.711911357341
-2015,"other, 2 blocks right from line",387,106.318681318681
+2015,"other, 1 block right from line",603,166.115702479339
+2015,"other, 2 blocks right from line",391,107.417582417582
 2016,"1 block radius from station entrance (right side)",390,206.349206349206
 2016,"2 block radius from station entrance (right side)",282,249.557522123894
-2016,"other, 1 block right from line",547,151.523545706371
-2016,"other, 2 blocks right from line",401,110.164835164835
+2016,"other, 1 block right from line",561,154.545454545455
+2016,"other, 2 blocks right from line",408,112.087912087912
 2017,"1 block radius from station entrance (right side)",405,214.285714285714
 2017,"2 block radius from station entrance (right side)",235,207.964601769911
-2017,"other, 1 block right from line",471,130.470914127424
-2017,"other, 2 blocks right from line",431,118.406593406593
+2017,"other, 1 block right from line",495,136.363636363636
+2017,"other, 2 blocks right from line",441,121.153846153846
