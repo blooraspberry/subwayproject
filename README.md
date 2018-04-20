@@ -1,6 +1,7 @@
-# $17 Billion Dollars and A Century in the making, is 2nd Ave worth it?
+# $17 Billion Dollars and A Century in the making, does the second ave subway line positively influence the social and economical development of upper east side? 
 
 Overbudget and overdue, the 2nd Ave Subway is one of the most ambitious transportation development projects in NYC. Here we assess whether the wait and money spent on planning and constructing the subway was put to good use.
+
 
 ## Explored Topics
 
