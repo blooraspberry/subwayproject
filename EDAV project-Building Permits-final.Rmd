@@ -12,7 +12,7 @@ knitr::opts_chunk$set(warning = FALSE,
 ```
 ## Project Background
 
-The Second Avenue Subway, a New York City Subway line that runs under Second Avenue on the East Side of Manhattan, has been proposed since 1920. The first phase of the line, consisting of three stations on the Upper East Side, started construction in 2007 and opened in 2017, ninety-seven years after the route was first proposed. Up until the 1960s, many distinct plans for the Second Avenue subway line were never carried out, though small segments were built in the 1970s. The complex reasons for these delays are why the line is sometimes called "the line that time forgot".
+The Second Avenue Subway, a New York City Subway line that runs under Second Avenue on the East Side of Manhattan, has been proposed since 1920. The first phase of the line, consisting of three stations on the Upper East Side, started construction in 2007 and opened in 2017, ninety-seven years after the route was first proposed. Up until the 1960s, many distinct plans for the Second Avenue subway line were never carried out, though small segments were built in the 1970s. The complex reasons for these delays are why the line is sometimes called "the line that time forgot" (source: Wikipedia).
 
 A brief summary of more important milestones is:
 
@@ -89,7 +89,7 @@ Now we add a column called "Distance" and use the block number to record the app
 
 For this purpose, we used the Block number column/variable and the official tax map for the City of New York, which graphically shows the the block number, street names and other information in the map. The link where we were able to access the online Digital Tax Map is: http://gis.nyc.gov/taxmap/map.html
 
-Using that info, we were able to generate the following maps, where we could manually place the pre-existing Lexington-Fourth Avenue Line (green line), the phase 1 of the 2nd Ave project (yellow line) and the stations entrances, to visually determine the block numbers that are near the 2nd Ave line and their distance (in blocks) to the line and to an station entrance:
+Using that info, we were able to generate the following map, where we could manually place the pre-existing Lexington-Fourth Avenue Line (green line), the phase 1 of the 2nd Ave project (yellow line) and the stations entrances, to visually determine the block numbers that are near the phase 1 of the 2nd Ave line and their distance (in blocks) to the Line and to an station entrance:
 
 ![](blocksphase1.png)
 <br><br>
@@ -117,7 +117,7 @@ For blocks to the left of the 2nd Ave Line, as we can see in the map above, we c
 2) block numbers that are within 2-3 blocks to the left; and
 3) block numbers that are within 4-5 blocks to the left; from the 2nd Ave Line
 
-Using the block numbers for each of the 3 categories detailed above, we can add a column called "Distance" and use the block number to record the approximate distance (in blocks) from each building filing a building permit, to the 2nd Ave Line:
+Using the block numbers for each of the 3 categories detailed above, we can add a column called "Distance" and use the block number to record the approximate distance (in blocks) from each building filing a building permit, to the left of 2nd Ave Line - phase 1:
 
 ```{r}
 data_phase1 <- permits_upper_east %>%
@@ -164,7 +164,7 @@ ggplot(data_phase1, aes(Filing.Year, index, color = Distance)) + geom_line(lwd =
 ```
 <br>
 
-From the graph above, it seems that to the left side of the 2nd Avenue Line - phase 1, the number of building permits filed is related to the distance in blocks from the 2nd Ave line project.
+**Conclusion:** From the graph above, it seems that to the left side of the 2nd Avenue Line - phase 1, the number of building permits filed is related to the distance in blocks from the 2nd Ave line project.
 
 Since the phase 1 opened on January 1st, 2017; we see the decrease in building permit filings as an expected result, as one would expect that new/remodeled residential and business buildings are planned ahead and not after the finalization of the project. We can later try to verify if this theory is adequate when we analyze the effect of phase 2 of the project, which, as mentioned in the project background summary, is just in preliminary works stage.       
 <br><br>
@@ -177,7 +177,7 @@ For blocks to the right of the 2nd Ave Line, as we can see in the map above, the
 2) block numbers that are within 2 blocks to the right; and
 3) block numbers that are within 3-4 blocks to the right; from the 2nd Ave Line
 
-Using the block numbers for each of those 3 categories, we followed the same procedure performed to analyze buildings to the left, going back to the original data to add a column called "Distance" and use the block number to record the approximate distance (in blocks) from each building filing a building permit, to the 2nd Ave Line:
+Using the block numbers for each of those 3 categories, we followed the same procedure performed to analyze buildings to the left, going back to the original data to add a column called "Distance" and use the block number to record the approximate distance (in blocks) from each building filing a building permit, to the right of 2nd Ave Line - phase 1:
 
 ```{r}
 data_phase1 <- permits_upper_east %>%
@@ -218,7 +218,7 @@ ggplot(data_phase1, aes(Filing.Year, index, color = Distance)) + geom_line(lwd =
 ```
 <br>
 
-Initially, we plotted just recent years (similar to what we did for buildings on the left side of the line), but we noted that the category '3-4 blocks right from 2nd Ave line' had higher increase in variation than other lines which was not an expected result.
+**Preliminary Conclusions:** Initially, we had plotted just recent years (similar to what we did for buildings on the left side of the line), but we noted that the category '3-4 blocks right from 2nd Ave line' had higher increase in variation than other lines which was not an expected result.
 
 However, after plotting from the initial year when data is available (1990) we could see that historically, that block of buildings have always had a higher increase in the number of building permits, which made us think it is due to the fact that this last category is right on the edge of the East River, which would attract a higher number of projects than the other categories, due to the water views. 
 
@@ -234,7 +234,7 @@ Similarly, we further differentiated the category '2 blocks right from 2nd Ave L
 3) buildings located within 2 block radius from a 2nd Ave Line station entrance (right side)
 4) all other buildings, within 2 blocks right from 2nd Ave Line
 
-Using the block numbers for each of the 4 categories detailed above, we followed the same procedure described previously, adding a column called "Distance" to record the approximate distance (in blocks) to the phase 1 of the 2nd Ave Line project and its stations entrances:
+Using the block numbers for each of the 4 categories detailed above, we followed the same procedure described previously, adding a column called "Distance" to record the approximate distance (in blocks) to the right of the 2nd Ave Line project - phase 1 and its stations entrances:
 
 ```{r}
 data_phase1 <- permits_upper_east %>%
@@ -277,7 +277,7 @@ ggplot(data_phase1, aes(Filing.Year, index, color = Distance)) + geom_line(lwd =
 ```
 <br>
 
-As we can clearly appreciate in the graph above, it seems that the variation in building permits filed is indeed related to the 2nd Ave Line project.
+**Conclusion:** As we can clearly appreciate in the graph above, it seems that the variation in building permits filed is indeed related to the 2nd Ave Line project.
 <br><br>
 
 ### Analysis of Building Permits for Phase 2
@@ -346,11 +346,11 @@ ggplot(data_phase2, aes(Filing.Year, index, color = Distance)) + geom_line(lwd =
 ```
 <br>
 
-Analyzing the graphic results obtained, it seems that within one block of distance to the phase 2 of the 2 Ave Line project, the number of building permits filed is related to the distance in blocks from the 2nd Ave line project, with buildings within a 2 blocks radius from a planned station entrance, showing considerably higher increase in filed building permits (both left and right from the 2nd Ave Line). 
+**Conclusions:** Analyzing the graphic results obtained, it seems that within one block of distance to the phase 2 of the 2 Ave Line project, the number of building permits filed is related to the distance in blocks from the 2nd Ave line project, with buildings within a 2 blocks radius from a planned station entrance, showing considerably higher increase in filed building permits (both left and right from the 2nd Ave Line). 
 
 Contrary to our findings in phase 1 which opened on January 1st, 2017, where we found a decrease in  building permit filings during 2017 (which we considered reasonable as one would expect that new/remodeled residential and business buildings are planned ahead and not after the finalization of the project); here we can see that the building permit filings actually increased during 2017, when preliminary works for this phase started, and they have higher increases starting in 2011-2013, after some recovery from 2008 financial crisis, when news were coming out about the so long waited 2nd Ave Line finally becoming a reality and tunneling machines successfully making its way through ground, building the tunnels for phase 1.
 
-After our analysis, we tried several plotting to try to find it there was any different relationship by plotting buildings owned by individuals Vs buildings owned by corporations, but we didn't find anything.
+**Additional work performed:** After our analysis, we tried several plots to try to find out if there was any different relationship by plotting buildings owned by individuals Vs buildings owned by corporations, but we didn't find any interesting result.
 
 As final step, we decided to present the results from our EDA in a map, so we summarized and saved our data, using the variables LATITUDE and LONGITUDE, instead of using the Distance variable that we created for EDA purposes:
 
@@ -383,4 +383,4 @@ data_geo_index <- data_geo2 %>% group_by(LATITUDE, LONGITUDE) %>%
 write.table(data_geo_index,file="Building_Permits_Lat-Long-index.csv",sep=",",row.names=F)
 ```
 
-<br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
