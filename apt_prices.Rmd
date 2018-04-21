@@ -34,41 +34,112 @@ Cleaning Data:
 - Looking at Sales Price > 0 and under 5M USD
 
 ```{r}
-data_ues$SaleDate <- as.Date(data_ues$SALE.DATE)
+#data_ues$SaleDate <- as.Date(data_ues$SALE.DATE)
 colnames(data_ues)[colnames(data_ues) == "SALE.PRICE"] <- 'SalePrice'
 colnames(data_ues)[colnames(data_ues) == "ZIP.CODE"] <- 'ZipCode'
 colnames(data_ues)[colnames(data_ues) == "TAX.CLASS.AT.PRESENT"] <- 'TaxClass'
 #data <- filter(data, grepl("2", TaxClass))
 data_ues <- data_ues[data_ues$SalePrice > 100000,]
 data_ues <- data_ues[data_ues$SalePrice < 5000000,]
-data_ues$Sale_Year <- format(as.Date(data_ues$SaleDate, '%Y'), "%Y")
-data_ues$Sale_Month <- format(as.Date(data_ues$SaleDate, '%m'), "%m")
+#data_ues$Sale_Year <- format(as.Date(data_ues$SaleDate, '%Y'), "%Y")
+#data_ues$Sale_Month <- format(as.Date(data_ues$SaleDate, '%m'), "%m")
 ```
 
 Some simple graphs
 Box Plots by Year for Manhattan
 
 ```{r}
-ggplot(data_ues, aes(Sale_Year, SalePrice)) +
+ggplot(data_ues, aes(YEAR, SalePrice)) +
   geom_boxplot()
 
-ggplot(data_ues, aes(Neighborhood, SalePrice)) +
-  geom_boxplot() 
+
 ```
 
 ```{r}
-data_phase1 <- ues_data %>%
-  mutate(Distance = ifelse('BLOCK' %in% c(1424:1427, 1529:1532,1539:1541,1423,1428:1433,
+# Left from 2nd Avenue Line
+
+data_phase1_left <- data_ues %>%
+  mutate(Distance = ifelse(data_ues$BLOCK %in% c(1424:1427, 1529:1532,1539:1541,1423,1428:1433,
                                         1525:1528,1533:1538,1646),
                                  '1 block left from 2nd Ave line',
-                          ifelse('BLOCK' %in% c(1404:1407,1512:1515,1522:1524,1403,1408:1413,
+                          ifelse(data_ues$BLOCK %in% c(1404:1407,1512:1515,1522:1524,1403,1408:1413,
                                               1508:1511,1516:1521,1624),
                                  '2-3 blocks left from 2nd Ave line',
-                          ifelse('BLOCK' %in% c(1384:1387,1495:1498,1505:1507,1383,1388:1393,
+                          ifelse(data_ues$BLOCK %in% c(1384:1387,1495:1498,1505:1507,1383,1388:1393,
                                               1491:1494,1499:1504,1602),
                                  '4-5 blocks left from 2nd Ave line',
                                  'other'))))
 ```
+
+
+```{r}
+# Left from 2nd Avenue Line
+#First, summarize by Filing.Date year and Distance:
+library(lubridate) #dates library
+data_phase1_left_edited <- data_phase1_left %>%
+  group_by(YEAR, Distance) %>%
+  summarise(Mean = mean(SalePrice, na.rm=TRUE)) %>%
+  arrange(YEAR) #arranges from lowest to highest value
+
+
+#Now, scale the data and create an index to visualize variations over time, then plot:
+data_phase1_left_edited <- data_phase1_left_edited %>% group_by(Distance) %>%
+  filter(YEAR >= 1990) %>%
+  filter(Distance != "other") %>%
+  mutate(index = 100*Mean/Mean[1]) %>% ungroup()
+
+
+ggplot(data_phase1_left_edited, aes(YEAR, index, color = Distance)) + geom_line(lwd = 0.75) +
+    ggtitle("Average Real Estate Sales vs Distance to 2nd Ave (Phase1-left)") +
+    labs (x = "Year", y = "Real Estate Prices") +
+    theme_grey(16) +
+    theme(legend.title = element_blank())
+```
+
+```{r}
+# Right from 2nd Avenue Line
+data_phase1_right <- data_ues %>%
+  mutate(Distance = ifelse(data_ues$BLOCK %in% c(1444:1447,1546:1549,1556:1558,1443,1448:1453,
+                                        1542:1545,1550:1555,1668),
+                                 '1 block right from 2nd Ave Line',
+                          ifelse(data_ues$BLOCK %in% c(1464:1467,1563:1566,1573,1463,1468:1473,
+                                              1559:1562,1567:1571,1690),
+                                 '2 blocks right from line',
+                          ifelse(data_ues$BLOCK %in% c(1482:1484,1580:1583,1480,1485:1490,1576:1579,
+                                              1584:1587,1590,1592,1589),
+                                 '3-4 blocks right from 2nd Ave Line',
+                                 'other'))))
+
+```
+
+
+```{r}
+# Right from 2nd Avenue Line
+#First, summarize by Filing.Date year and Distance:
+
+#First, summarize by Filing.Date year and Distance:
+library(lubridate) #dates library
+data_phase1_right_edited <- data_phase1_right %>%
+  group_by(YEAR, Distance) %>%
+  summarise(Mean = mean(SalePrice, na.rm=TRUE)) %>%
+  arrange(YEAR) #arranges from lowest to highest value
+
+#Now, scale the data and create an index to visualize variations over time, then plot:
+data_phase1_right_edited <- data_phase1_right_edited %>% group_by(Distance) %>%
+  filter(YEAR >= 1990) %>%
+  filter(Distance != "other") %>%
+  mutate(index = 100*Mean/Mean[1]) %>% ungroup()
+
+#Plot time series:
+ggplot(data_phase1_right_edited, aes(YEAR, index, color = Distance)) + geom_line(lwd = 0.75) +
+    ggtitle("Average Real Estate Sales vs Distance to 2nd Ave (Phase1-right)") +
+    labs (x = "Year", y = "Indexed of Average Real Estate Sale") +
+    theme_grey(16) +
+    theme(legend.title = element_blank())
+
+```
+
+
 
 Box Plots By Year for UES Zipcodes (10021, 10028, 10044, 10065, 10075, 10128)
 ```{r}
