@@ -19,12 +19,14 @@ library(dplyr)
 Importing files
 
 ```{r}
-data14 <- read_excel("data/2014_manhattan.xls",  col_names = TRUE, sheet = "Manhattan", skip = 4)
-data15 <- read_excel("data/2015_manhattan.xls",  col_names = TRUE, sheet = "Manhattan", skip = 4)
-data16 <- read_excel("data/2016_manhattan.xls",  col_names = TRUE, sheet = "Manhattan", skip = 4)
+#data14 <- read_excel("data/2014_manhattan.xls",  col_names = TRUE, sheet = "Manhattan", skip = 4)
+#data15 <- read_excel("data/2015_manhattan.xls",  col_names = TRUE, sheet = "Manhattan", skip = 4)
+#data16 <- read_excel("data/2016_manhattan.xls",  col_names = TRUE, sheet = "Manhattan", skip = 4)
 
-df_list <- list(data14, data15, data16)
-data <- merge_recurse(df_list)
+data_ues  <- read.csv(file="all_ues_sales_geocode.csv", header=TRUE, sep=",")
+data_ues
+#df_list <- list(data14, data15, data16)
+#data <- merge_recurse(df_list)
 ```
 
 Cleaning Data:
@@ -32,38 +34,51 @@ Cleaning Data:
 - Looking at Sales Price > 0 and under 5M USD
 
 ```{r}
-data$"SALE DATE\n" <- as.Date(data$"SALE DATE\n", "%m-%y")
-colnames(data)[colnames(data) == "SALE DATE\n"] <- 'SaleDate'
-colnames(data)[colnames(data) == "NEIGHBORHOOD\n"] <- 'Neighborhood'
-colnames(data)[colnames(data) == "SALE PRICE\n"] <- 'SalePrice'
-colnames(data)[colnames(data) == "ZIP CODE\n"] <- 'ZipCode'
-colnames(data)[colnames(data) == "TAX CLASS AT PRESENT\n"] <- 'TaxClass'
-data <- filter(data, grepl("2", TaxClass))
-data <- data[data$SalePrice > 100000,]
-data <- data[data$SalePrice < 5000000,]
-data$Sale_Year <- format(as.Date(data$SaleDate, '%Y'), "%Y")
-data$Sale_Month <- format(as.Date(data$SaleDate, '%m'), "%m")
+data_ues$SaleDate <- as.Date(data_ues$SALE.DATE)
+colnames(data_ues)[colnames(data_ues) == "SALE.PRICE"] <- 'SalePrice'
+colnames(data_ues)[colnames(data_ues) == "ZIP.CODE"] <- 'ZipCode'
+colnames(data_ues)[colnames(data_ues) == "TAX.CLASS.AT.PRESENT"] <- 'TaxClass'
+#data <- filter(data, grepl("2", TaxClass))
+data_ues <- data_ues[data_ues$SalePrice > 100000,]
+data_ues <- data_ues[data_ues$SalePrice < 5000000,]
+data_ues$Sale_Year <- format(as.Date(data_ues$SaleDate, '%Y'), "%Y")
+data_ues$Sale_Month <- format(as.Date(data_ues$SaleDate, '%m'), "%m")
 ```
 
 Some simple graphs
 Box Plots by Year for Manhattan
 
 ```{r}
-ggplot(data, aes(Sale_Year, SalePrice)) +
+ggplot(data_ues, aes(Sale_Year, SalePrice)) +
   geom_boxplot()
 
-ggplot(data, aes(Neighborhood, SalePrice)) +
+ggplot(data_ues, aes(Neighborhood, SalePrice)) +
   geom_boxplot() 
+```
+
+```{r}
+data_phase1 <- ues_data %>%
+  mutate(Distance = ifelse('BLOCK' %in% c(1424:1427, 1529:1532,1539:1541,1423,1428:1433,
+                                        1525:1528,1533:1538,1646),
+                                 '1 block left from 2nd Ave line',
+                          ifelse('BLOCK' %in% c(1404:1407,1512:1515,1522:1524,1403,1408:1413,
+                                              1508:1511,1516:1521,1624),
+                                 '2-3 blocks left from 2nd Ave line',
+                          ifelse('BLOCK' %in% c(1384:1387,1495:1498,1505:1507,1383,1388:1393,
+                                              1491:1494,1499:1504,1602),
+                                 '4-5 blocks left from 2nd Ave line',
+                                 'other'))))
 ```
 
 Box Plots By Year for UES Zipcodes (10021, 10028, 10044, 10065, 10075, 10128)
 ```{r}
 
 #ues_zip = list(10021, 10028, 10044, 10065, 10075, 10128)
-ues_data <- filter(data, grepl("UPPER EAST", Neighborhood))
+ues_data <- filter(data_ues, grepl("UPPER EAST", Neighborhood))
 
 ggplot(ues_data, aes(Neighborhood, SalePrice)) +
   geom_boxplot()
+```
 ```
 
 ```{r}
